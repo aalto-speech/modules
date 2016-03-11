@@ -2,12 +2,11 @@
 
 source ../common/common.sh
 
-NAME=kaldi
+NAME=kaldi-cuda
 GIT_REPO=https://github.com/kaldi-asr/kaldi.git
 GIT_DIR=src
 
 init_vars
-
 
 bash ${FILE_DIR}/build_modules
 bash ${FILE_DIR}/modules
@@ -37,7 +36,7 @@ BIN_PATH=${BUILD_DIR}/src/collectbin
 LIB_PATH=${BUILD_DIR}/src/lib
 
 DESC="Kaldi Speech Recognition Toolkit"
-HELP="Kaldi ${VERSION}, non-cuda with systems openblas"
+HELP="Kaldi ${VERSION}, cuda with systems openblas"
 
 EXTRA_LINES=$(cat ${FILE_DIR}/modules)
 

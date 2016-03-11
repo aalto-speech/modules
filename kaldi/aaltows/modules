@@ -1,0 +1,4 @@
+module load openfst/1.4.1
+module load sctk
+module load sph2pipe
+module load srilm
