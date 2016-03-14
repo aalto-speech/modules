@@ -17,7 +17,7 @@ checkout_git
 pushd ${BUILD_DIR}/src
 
 echo "KALDI_COMMIT = ${COMMIT}" > kaldi.mk
-echo "FSTROOT = ${FSTROOT}" >> kaldi.mk
+echo "FSTROOT = ${FST_ROOT}" >> kaldi.mk
 echo "KALDIROOT = ${OPT_DIR}" >> kaldi.mk
 cat ${FILE_DIR}/base.mk >> kaldi.mk
 
