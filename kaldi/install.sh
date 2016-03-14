@@ -16,9 +16,13 @@ checkout_git
 
 pushd ${BUILD_DIR}/src
 
-echo "KALDI_COMMIT=$COMMIT" > kaldi.mk
+echo "KALDI_COMMIT = ${COMMIT}" > kaldi.mk
+echo "FSTROOT = ${FSTROOT}" >> kaldi.mk
+echo "KALDIROOT = ${OPT_DIR}" >> kaldi.mk
 cat ${FILE_DIR}/base.mk >> kaldi.mk
+
 cat ${FILE_DIR}/linux_openblas.mk >> kaldi.mk
+
 make
 mkdir collectbin
 pushd collectbin

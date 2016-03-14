@@ -24,9 +24,9 @@ BIN_PATH=`pwd`/bin
 LIB_PATH=`pwd`/lib
 
 DESC="OpenFST Toolkit"
-HELP="OpenFST ${VERSION}"
+HELP="OpenFST ${VERSION}. This installation contains the kaldi patch for the minimization algorithm"
 
-EXTRA_LINES="FST_ROOT=$(pwd)"
+EXTRA_LINES="setenv FST_ROOT $(pwd)"
 
 write_module
 
