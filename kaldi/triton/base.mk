@@ -15,13 +15,15 @@ valgrind: .valgrind
 
 
 KALDI_FLAVOR := dynamic
-KALDILIBDIR := /triton/ics/project/puhe/Modules/opt/kaldi/kaldi-${KALDI_COMMIT}/src/lib
+KALDILIBDIR := ${KALDIROOT}/lib
 CONFIGURE_VERSION := 2
-FSTROOT = /triton/ics/project/puhe/Modules/opt/openfst/openfst-1.4.1
 OPENFST_VER = 1.4.1
 OPENFST_GE_10400 = 1
-OPENFSTLIBS = -L/triton/ics/project/puhe/Modules/opt/openfst/openfst-1.4.1/lib -lfst
-OPENFSTLDFLAGS = -Wl,-rpath=/triton/ics/project/puhe/Modules/opt/openfst/openfst-1.4.1/lib
-OPENBLASLIBS = -L/usr/lib64 -lopenblas -lgfortran -llapack 
+OPENFSTLIBS = -L${FSTROOT}/lib -lfst
+OPENFSTLDFLAGS = -Wl,-rpath=${FSTROOT}/lib
+EXTRA_CXXFLAGS += -DHAVE_OPENFST_GE_10400  -std=c++0x
+
+
+OPENBLASLIBS = -L/usr/lib64 -lopenblas -lgfortran
 OPENBLASROOT = /usr
-EXTRA_CXXFLAGS += -DHAVE_OPENFST_GE_10400 -std=c++0x -I${OPENBLASROOT}/include/openblas
+EXTRA_CXXFLAGS += -I${OPENBLASROOT}/include/openblas
