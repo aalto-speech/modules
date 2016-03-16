@@ -9,8 +9,9 @@ error_exit () {
 
 init_vars () {
     SCRIPT_DIR=$(pwd)
-    OPT_DIR=${GROUP_DIR}/Modules/opt/${NAME}
-    MODULE_DIR=${GROUP_DIR}/Modules/modulefiles/${NAME}
+    MODULE_ROOT=${MODULE_ROOT:-${GROUP_DIR}/Modules}
+    OPT_DIR=${MODULE_ROOT}/opt/${NAME}
+    MODULE_DIR=${MODULE_ROOT}/modulefiles/${NAME}
 
     mkdir -p ${OPT_DIR}
     mkdir -p ${MODULE_DIR}

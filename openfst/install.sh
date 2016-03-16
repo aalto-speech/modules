@@ -17,16 +17,16 @@ pushd openfst-${VERSION}/src/include/fst
 patch -c -p0 -N < ../../../../openfst-${VERSION}.patch
 popd
 pushd  openfst-${VERSION}
-./configure --prefix=`pwd` --enable-static --enable-shared --enable-far --enable-ngram-fsts --enable-lookahead-fsts --enable-const-fsts --enable-pdt --enable-linear-fsts LIBS="-ldl"
+./configure --prefix=${OPT_DIR}/${VERSION} --enable-static --enable-shared --enable-far --enable-ngram-fsts --enable-lookahead-fsts --enable-const-fsts --enable-pdt --enable-linear-fsts LIBS="-ldl"
 make install
 
-BIN_PATH=`pwd`/bin
-LIB_PATH=`pwd`/lib
+BIN_PATH=${OPT_DIR}/${VERSION}/bin
+LIB_PATH=${OPT_DIR}/${VERSION}/lib
 
 DESC="OpenFST Toolkit"
 HELP="OpenFST ${VERSION}. This installation contains the kaldi patch for the minimization algorithm"
 
-EXTRA_LINES="setenv FST_ROOT $(pwd)"
+EXTRA_LINES="setenv FST_ROOT ${OPT_DIR}/${VERSION}"
 
 write_module
 
