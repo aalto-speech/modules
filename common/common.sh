@@ -67,8 +67,8 @@ if [ ! -z "${BIN_PATH}" ]; then
 echo "prepend-path     PATH ${BIN_PATH}" >> ${MODULE_DIR}/${VERSION}
 fi
 
-if [ ! -z "${$LIB_PATH}" ]; then
-echo "prepend-path     LD_LIBRARY_PATH ${BIN_PATH}" >> ${MODULE_DIR}/${VERSION}
+if [ ! -z "${LIB_PATH}" ]; then
+echo "prepend-path     LD_LIBRARY_PATH ${LIB_PATH}" >> ${MODULE_DIR}/${VERSION}
 fi
 
 }
