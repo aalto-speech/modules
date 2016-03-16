@@ -23,5 +23,4 @@ OPENFSTLIBS = -L${FSTROOT}/lib -lfst
 OPENFSTLDFLAGS = -Wl,-rpath=${FSTROOT}/lib
 EXTRA_CXXFLAGS += -DHAVE_OPENFST_GE_10400  -std=c++0x
 
-OPENBLASLIBS = -L/usr/lib -lopenblas -lgfortran -llapack -Wl,-rpath=/usr/lib
-OPENBLASROOT = /usr
+

@@ -16,11 +16,7 @@ init_vars () {
     mkdir -p ${OPT_DIR}
     mkdir -p ${MODULE_DIR}
 
-    if [ "${TRITON}" = "triton" ]; then
-        FILE_DIR=${SCRIPT_DIR}/triton
-    else
-        FILE_DIR=${SCRIPT_DIR}/aaltows
-    fi
+    FILE_DIR=${SCRIPT_DIR}/files
 }
 
 checkout_git () {
@@ -65,10 +61,14 @@ proc ModulesHelp { } {
 module-whatis   "${DESC}"
 
 ${EXTRA_LINES}
-
-prepend-path     PATH $BIN_PATH
-prepend-path    LD_LIBRARY_PATH $LIB_PATH
-
 Endofmessage
+
+if [ ! -z "${BIN_PATH}" ]; then
+echo "prepend-path     PATH $BIN_PATH" >> ${MODULE_DIR}/${VERSION}
+fi
+
+if [ ! -z "${$LIB_PATH}" ]; then
+echo "prepend-path     LD_LIBRARY_PATH $LIB_PATH" >> ${MODULE_DIR}/${VERSION}
+fi
 
 }

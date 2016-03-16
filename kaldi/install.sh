@@ -8,8 +8,6 @@ GIT_DIR=src
 
 init_vars
 
-
-bash ${FILE_DIR}/build_modules
 bash ${FILE_DIR}/modules
 
 checkout_git
@@ -19,7 +17,18 @@ pushd ${BUILD_DIR}/src
 echo "KALDI_COMMIT = ${COMMIT}" > kaldi.mk
 echo "FSTROOT = ${FST_ROOT}" >> kaldi.mk
 echo "KALDIROOT = ${OPT_DIR}" >> kaldi.mk
+
 cat ${FILE_DIR}/base.mk >> kaldi.mk
+
+if [ "${TRITON}" = "triton" ]; then
+    echo "OPENBLASLIBS = -L/usr/lib64 -lopenblas -lgfortran" >> kaldi.mk
+    echo "OPENBLASROOT = /usr" >> kaldi.mk
+    echo "EXTRA_CXXFLAGS += -I/usr/include/openblas" >> kaldi.mk
+else
+    echo "OPENBLASLIBS = -L/usr/lib -lopenblas -lgfortran -llapack -Wl,-rpath=/usr/lib" >> kaldi.mk
+    echo "OPENBLASROOT = /usr" >> kaldi.mk
+fi
+
 
 cat ${FILE_DIR}/linux_openblas.mk >> kaldi.mk
 
