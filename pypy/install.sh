@@ -18,10 +18,13 @@ pushd ${OPT_DIR}/${VERSION}
 
 rpython/bin/rpython -Ojit pypy/goal/targetpypystandalone.py
 
+mkdir bin
+pushd bin
+ln -s ../pypy-c pypy
+popd
 
 
 BIN_PATH=${OPT_DIR}/${VERSION}/bin
-LIB_PATH=${OPT_DIR}/${VERSION}/lib
 
 DESC="PyPy"
 HELP="PyPy ${VERSION}"

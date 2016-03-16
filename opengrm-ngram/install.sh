@@ -11,6 +11,8 @@ init_vars
 
 pushd ${OPT_DIR}
 
+rm -Rf opengrm-ngram-${VERSION}*
+
 wget http://www.openfst.org/twiki/pub/GRM/NGramDownload/opengrm-ngram-${VERSION}.tar.gz || error_exit "Could not download this version"
 
 tar -zxf opengrm-ngram-${VERSION}.tar.gz
@@ -29,4 +31,9 @@ HELP="OpenGrm NGram ${VERSION}"
 write_module
 
 popd
+
+rm -Rf opengrm-ngram-${VERSION}*
+
 popd
+
+

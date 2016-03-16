@@ -34,7 +34,7 @@ checkout_git () {
 
     COMMIT=$(git rev-parse --short HEAD)
 
-    BUILD_DIR=${OPT_DIR}/${NAME}-${COMMIT}
+    BUILD_DIR=${OPT_DIR}/${NAME}-${COMMIT}-build
 
     mkdir ${BUILD_DIR}
 

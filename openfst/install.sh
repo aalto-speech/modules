@@ -9,6 +9,8 @@ init_vars
 
 pushd ${OPT_DIR}
 
+rm -Rf openfst-${VERSION}* ${VERSION}
+
 wget http://openfst.cs.nyu.edu/twiki/pub/FST/FstDownload/openfst-${VERSION}.tar.gz || error_exit "Could not download this version"
 wget https://github.com/kaldi-asr/kaldi/raw/master/tools/extras/openfst-${VERSION}.patch || error_exit "Could not download kaldi patch"
 
@@ -31,4 +33,5 @@ EXTRA_LINES="setenv FST_ROOT ${OPT_DIR}/${VERSION}"
 write_module
 
 popd
+rm -Rf openfst-${VERSION}*
 popd

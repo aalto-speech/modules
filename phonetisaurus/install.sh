@@ -7,7 +7,7 @@ NAME=phonetisaurus
 
 init_vars
 
-if [ -f downloads/phonetisaurus-${VERSION}.tgz ]; then
+if [ ! -f downloads/phonetisaurus-${VERSION}.tgz ]; then
    error_exit "Please download phonetisaurus-${VERSION}.tgz  to the downloads folder"
 fi
 

@@ -7,12 +7,12 @@ NAME=sctk
 
 init_vars
 
-if [ -f downloads/sctk-${VERSION}*.bz2 ]; then
+if [ ! -f downloads/sctk-${VERSION}*.bz2 ]; then
    error_exit "Please download sctk-${VERSION}.xxxx.bz2 to the downloads folder"
 fi
 
 mkdir -p ${OPT_DIR}/${VERSION}-build
-tar xzvf downloads/sctk-${VERSION}*.bz2 --strip-components=1 -C ${OPT_DIR}/${VERSION}-build
+tar xjf downloads/sctk-${VERSION}*.bz2 --strip-components=1 -C ${OPT_DIR}/${VERSION}-build
 
 pushd ${OPT_DIR}/${VERSION}-build
 
@@ -21,7 +21,7 @@ sed -i "1iPREFIX = ${OPT_DIR}/${VERSION}/" Makefile
 
 make config || error_exit "config failed"
 make all || error_exit "compilation failed"
-make check || error_exit "test failed"
+#make check || error_exit "test failed"
 make install || error_exit "install failed"
 make doc || error_exit "doc failed"
 

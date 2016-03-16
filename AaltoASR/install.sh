@@ -10,7 +10,7 @@ init_vars
 
 checkout_git
 
-INSTALL_DIR=${BUILD_DIR}-install
+INSTALL_DIR=${BUILD_DIR}
 
 mkdir ${BUILD_DIR}/build
 pushd ${BUILD_DIR}/build
