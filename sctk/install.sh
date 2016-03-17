@@ -21,7 +21,7 @@ sed -i "1iPREFIX = ${OPT_DIR}/${VERSION}/" Makefile
 
 make config || error_exit "config failed"
 make all || error_exit "compilation failed"
-#make check || error_exit "test failed"
+make check || error_exit "test failed"
 make install || error_exit "install failed"
 make doc || error_exit "doc failed"
 

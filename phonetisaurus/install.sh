@@ -2,28 +2,36 @@
 
 source ../common/common.sh
 
-VERSION=${1:-0.8a}
 NAME=phonetisaurus
+GIT_REPO=https://github.com/AdolfVonKleist/Phonetisaurus.git
+
+module load openfst
 
 init_vars
+checkout_git
 
-if [ ! -f downloads/phonetisaurus-${VERSION}.tgz ]; then
-   error_exit "Please download phonetisaurus-${VERSION}.tgz  to the downloads folder"
-fi
+BIN_PATH=${INSTALL_DIR}/bin
 
-mkdir -p ${OPT_DIR}/${VERSION}
-tar xzvf downloads/phonetisaurus-${VERSION}.tgz --strip-components=1 -C ${OPT_DIR}/${VERSION}
+mkdir -p ${BIN_PATH}
 
-pushd ${OPT_DIR}/${VERSION}/phonetisaurus/src
+pushd ${BUILD_DIR}/src
 
-make all || error_exit "compilation failed"
+./configure  --with-openfst-libs=$FSTROOT/lib --with-openfst-includes=$FSTROOT/include --with-install-bin=${BIN_PATH}
 
-BIN_PATH=${OPT_DIR}/${VERSION}/bin
+sed -i "s/^GIT_REVISION/#GIT_REVISION/" Makefile
+sed -i "1iGIT_REVISION := ${COMMIT}" Makefile
+
+make || error_exit "compilation failed"
+make install || error_exit "installation failed"
 
 
 DESC="phonetisaurus"
 HELP="phonetisaurus ${VERSION}"
 
+EXTRA_LINES="module load openfst"
+
 write_module
 
 popd
+
+rm -Rf ${BUILD_DIR}
