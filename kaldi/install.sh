@@ -8,7 +8,7 @@ GIT_DIR=src
 
 init_vars
 
-bash ${FILE_DIR}/modules
+. ${FILE_DIR}/modules
 
 checkout_git
 
@@ -33,7 +33,7 @@ fi
 cat ${FILE_DIR}/linux_openblas.mk >> kaldi.mk
 
 make
-mkdir collectbin
+mkdir -p collectbin
 pushd collectbin
 find .. -type f -executable -print | grep "bin/" | grep -v "\.cc$" | grep -v "so$" | xargs -L 1 ln -s
 popd

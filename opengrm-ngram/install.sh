@@ -18,7 +18,7 @@ wget http://www.openfst.org/twiki/pub/GRM/NGramDownload/opengrm-ngram-${VERSION}
 tar -zxf opengrm-ngram-${VERSION}.tar.gz
 pushd opengrm-ngram-${VERSION}
 
-./configure CPPFLAGS="-I${FSTROOT}/include" LDFLAGS="-L${FSTROOT}/lib -L${FSTROOT}/lib/fst" --prefix=${OPT_DIR}/${VERSION}
+./configure CPPFLAGS="-I${FST_ROOT}/include" LDFLAGS="-L${FST_ROOT}/lib -L${FST_ROOT}/lib/fst" --prefix=${OPT_DIR}/${VERSION}
 make
 make install
 

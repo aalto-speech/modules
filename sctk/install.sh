@@ -12,21 +12,23 @@ if [ ! -f downloads/sctk-${VERSION}*.bz2 ]; then
 fi
 
 mkdir -p ${OPT_DIR}/${VERSION}-build
-tar xjf downloads/sctk-${VERSION}*.bz2 --strip-components=1 -C ${OPT_DIR}/${VERSION}-build
+fname=$(ls -1 downloads/sctk-${VERSION}*.bz2)
+tar xjf $fname --strip-components=1 -C ${OPT_DIR}/${VERSION}-build
 
 pushd ${OPT_DIR}/${VERSION}-build
 
-sed -i "s/^PREFIX/#PREFIX/" src/makefile
-sed -i "1iPREFIX = ${OPT_DIR}/${VERSION}/" Makefile
+sed -i "s#^PREFIX.*#PREFIX=${OPT_DIR}/${VERSION}#" src/makefile
 
 make config || error_exit "config failed"
+#sed -i "1iPREFIX = ${OPT_DIR}/${VERSION}/" Makefile
 make all || error_exit "compilation failed"
-make check || error_exit "test failed"
-make install || error_exit "install failed"
-make doc || error_exit "doc failed"
 
 BIN_PATH=${OPT_DIR}/${VERSION}/bin
 LIB_PATH=${OPT_DIR}/${VERSION}/lib
+mkdir -p $BIN_PATH $LIB_PATH
+make install || error_exit "install failed"
+make doc || error_exit "doc failed"
+
 
 DESC="SCTK"
 HELP="sctk ${VERSION}"

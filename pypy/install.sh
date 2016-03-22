@@ -16,7 +16,7 @@ mkdir -p ${OPT_DIR}/${VERSION}
 tar xjf pypy-${VERSION}-src.tar.bz2 --strip-components 1 -C ${OPT_DIR}/${VERSION}
 pushd ${OPT_DIR}/${VERSION}
 
-rpython/bin/rpython -Ojit pypy/goal/targetpypystandalone.py
+python2 rpython/bin/rpython -Ojit pypy/goal/targetpypystandalone.py
 
 mkdir bin
 pushd bin

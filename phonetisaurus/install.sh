@@ -16,7 +16,7 @@ mkdir -p ${BIN_PATH}
 
 pushd ${BUILD_DIR}/src
 
-./configure  --with-openfst-libs=$FSTROOT/lib --with-openfst-includes=$FSTROOT/include --with-install-bin=${BIN_PATH}
+./configure  --with-openfst-libs=$FST_ROOT/lib --with-openfst-includes=$FST_ROOT/include --with-install-bin=${BIN_PATH}
 
 sed -i "s/^GIT_REVISION/#GIT_REVISION/" Makefile
 sed -i "1iGIT_REVISION := ${COMMIT}" Makefile
