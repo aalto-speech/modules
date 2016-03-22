@@ -2,34 +2,30 @@
 
 source ../common/common.sh
 
-VERSION=${1:-2.4.10}
-NAME=sctk
+VERSION=${1:-0.4.1}
+NAME=mitlm
 
 init_vars
 
-if [ ! -f downloads/sctk-${VERSION}*.bz2 ]; then
-   error_exit "Please download sctk-${VERSION}.xxxx.bz2 to the downloads folder"
+if [ ! -f downloads/mitlm-${VERSION}.tar.gz ]; then
+   error_exit "Please download mitlm-${VERSION}.tar.gz to the downloads folder"
 fi
 
 mkdir -p ${OPT_DIR}/${VERSION}-build
-tar xjf downloads/sctk-${VERSION}*.bz2 --strip-components=1 -C ${OPT_DIR}/${VERSION}-build
+tar xzf downloads/mitlm-${VERSION}.tar.gz --strip-components=1 -C ${OPT_DIR}/${VERSION}-build
 
 pushd ${OPT_DIR}/${VERSION}-build
 
-sed -i "s/^PREFIX/#PREFIX/" src/makefile
-sed -i "1iPREFIX = ${OPT_DIR}/${VERSION}/" Makefile
+./configure --prefix=${INSTALL_DIR}
 
-make config || error_exit "config failed"
 make all || error_exit "compilation failed"
-make check || error_exit "test failed"
 make install || error_exit "install failed"
-make doc || error_exit "doc failed"
 
 BIN_PATH=${OPT_DIR}/${VERSION}/bin
 LIB_PATH=${OPT_DIR}/${VERSION}/lib
 
-DESC="SCTK"
-HELP="sctk ${VERSION}"
+DESC="mitlm"
+HELP="mitlm ${VERSION}"
 
 write_module
 
