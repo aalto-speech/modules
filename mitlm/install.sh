@@ -16,7 +16,7 @@ tar xzf downloads/mitlm-${VERSION}.tar.gz --strip-components=1 -C ${OPT_DIR}/${V
 
 pushd ${OPT_DIR}/${VERSION}-build
 
-./configure --prefix=${INSTALL_DIR}
+./configure --prefix=${OPT_DIR}/${VERSION}
 
 make all || error_exit "compilation failed"
 make install || error_exit "install failed"
