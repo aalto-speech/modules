@@ -1,4 +1,5 @@
 #!/bin/bash
+#SBATCH --mem-per-cpu 5G
 
 source ../common/common.sh
 
