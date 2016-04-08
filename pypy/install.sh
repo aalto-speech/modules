@@ -1,5 +1,6 @@
 #!/bin/bash
-#SBATCH --mem-per-cpu 5G
+#SBATCH --mem-per-cpu 10G
+#SBATCH -t 1-00:00:00
 
 source ../common/common.sh
 
