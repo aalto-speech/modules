@@ -14,9 +14,9 @@ rm -Rf gcc-${VERSION}* ${VERSION}
 wget ftp://ftp.nluug.nl/mirror/languages/gcc/releases/gcc-${VERSION}/gcc-${VERSION}.tar.gz || error_exit "Could not download this version"
 
 tar -zxf gcc-${VERSION}.tar.gz
-mkdir ${BUILD_DIR}
-pushd ${BUILD_DIR}
-./configure --prefix=${OPT_DIR}/${VERSION} --disable-multilib
+mkdir gcc-${VERSION}-build
+pushd gcc-${VERSION}-build
+../gcc-${VERSION}/configure --prefix=${OPT_DIR}/${VERSION} --disable-multilib
 make
 make install
 
