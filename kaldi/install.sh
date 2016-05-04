@@ -1,4 +1,6 @@
 #!/bin/bash
+#SBATCH --mem-per-cpu 4G
+#SBATCH -t 10:00:00
 
 source ../common/common.sh
 
@@ -7,6 +9,8 @@ GIT_REPO=https://github.com/kaldi-asr/kaldi.git
 GIT_DIR=src
 
 init_vars
+
+module load gcc
 
 . ${FILE_DIR}/modules
 

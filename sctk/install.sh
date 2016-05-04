@@ -7,6 +7,8 @@ NAME=sctk
 
 init_vars
 
+module load gcc
+
 if [ ! -f downloads/sctk-${VERSION}*.bz2 ]; then
    error_exit "Please download sctk-${VERSION}.xxxx.bz2 to the downloads folder"
 fi
@@ -29,9 +31,10 @@ mkdir -p $BIN_PATH $LIB_PATH
 make install || error_exit "install failed"
 make doc || error_exit "doc failed"
 
-
 DESC="SCTK"
 HELP="sctk ${VERSION}"
+
+EXTRA_LINES="module load prgenv"
 
 write_module
 

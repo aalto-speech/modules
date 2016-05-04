@@ -7,6 +7,8 @@ NAME=mitlm
 
 init_vars
 
+module load gcc
+
 if [ ! -f downloads/mitlm-${VERSION}.tar.gz ]; then
    error_exit "Please download mitlm-${VERSION}.tar.gz to the downloads folder"
 fi
@@ -26,6 +28,8 @@ LIB_PATH=${OPT_DIR}/${VERSION}/lib
 
 DESC="mitlm"
 HELP="mitlm ${VERSION}"
+
+EXTRA_LINES="module load prgenv"
 
 write_module
 

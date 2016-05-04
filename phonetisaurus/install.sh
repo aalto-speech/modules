@@ -5,6 +5,7 @@ source ../common/common.sh
 NAME=phonetisaurus
 GIT_REPO=https://github.com/AdolfVonKleist/Phonetisaurus.git
 
+module load gcc
 module load openfst
 
 init_vars
@@ -28,7 +29,8 @@ make install || error_exit "installation failed"
 DESC="phonetisaurus"
 HELP="phonetisaurus ${VERSION}"
 
-EXTRA_LINES="module load openfst"
+EXTRA_LINES="module load openfst
+module load prgenv"
 
 write_module
 

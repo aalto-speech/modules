@@ -1,4 +1,6 @@
 #!/bin/bash
+#SBATCH --mem-per-cpu 2G
+#SBATCH -t 10:00:00
 
 source ../common/common.sh
 
@@ -6,6 +8,8 @@ VERSION=${1:-1.4.1}
 NAME=openfst
 
 init_vars
+
+module load gcc
 
 pushd ${OPT_DIR}
 
@@ -28,7 +32,8 @@ LIB_PATH=${OPT_DIR}/${VERSION}/lib
 DESC="OpenFST Toolkit"
 HELP="OpenFST ${VERSION}. This installation contains the kaldi patch for the minimization algorithm"
 
-EXTRA_LINES="setenv FST_ROOT ${OPT_DIR}/${VERSION}"
+EXTRA_LINES="module load prgenv
+setenv FST_ROOT ${OPT_DIR}/${VERSION}"
 
 write_module
 

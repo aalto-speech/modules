@@ -7,6 +7,8 @@ NAME=sph2pipe
 
 init_vars
 
+module load gcc
+
 pushd ${OPT_DIR}
 
 wget https://www.ldc.upenn.edu/sites/www.ldc.upenn.edu/files/ctools/sph2pipe_v${VERSION}.tar.gz || error_exit "Could not download this version"
@@ -23,6 +25,8 @@ LIB_PATH=
 
 DESC="sph2pipe"
 HELP="sph2pipe ${VERSION}"
+
+EXTRA_LINES="module load prgenv"
 
 write_module
 

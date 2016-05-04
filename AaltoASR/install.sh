@@ -8,6 +8,9 @@ GIT_BRANCH=develop
 
 init_vars
 
+module load gcc
+module load cmake
+
 checkout_git
 
 mkdir ${BUILD_DIR}/build
@@ -23,6 +26,7 @@ LIB_PATH=${INSTALL_DIR}/lib
 
 
 read -d '' EXTRA_LINES << EOF
+module load prgenv
 append-path     PYTHONPATH ${LIB_PATH}/site-packages
 append-path     PERL5LIB ${GIT_PATH}/aku/scripts
 setenv          AALTOASR ${INSTALL_DIR}

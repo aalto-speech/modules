@@ -7,6 +7,8 @@ NAME=srilm
 
 init_vars
 
+module load gcc
+
 if [ ! -f downloads/srilm-${VERSION}.tar.gz ]; then
    error_exit "Please download srilm-${VERSION}.tar.gz to the downloads folder"
 fi
@@ -28,7 +30,8 @@ LIB_PATH=`pwd`/lib
 DESC="SRI Language model Toolkit"
 HELP="SRILM ${VERSION}"
 
-EXTRA_LINES="prepend-path MANPATH $(pwd)/man"
+EXTRA_LINES="module load prgenv
+prepend-path MANPATH $(pwd)/man"
 
 write_module
 

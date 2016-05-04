@@ -6,6 +6,7 @@ VERSION=${1:-1.2.2}
 NAME=opengrm-ngram
 
 module load openfst
+module load gcc
 
 init_vars
 
@@ -27,6 +28,9 @@ LIB_PATH=${OPT_DIR}/${VERSION}/lib
 
 DESC="OpenGrm NGram"
 HELP="OpenGrm NGram ${VERSION}"
+
+EXTRA_LINES="module load prgenv
+module load openfst"
 
 write_module
 

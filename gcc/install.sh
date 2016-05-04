@@ -17,12 +17,14 @@ tar -zxf gcc-${VERSION}.tar.gz
 mkdir gcc-${VERSION}-build
 pushd gcc-${VERSION}-build
 ../gcc-${VERSION}/configure --prefix=${OPT_DIR}/${VERSION} --disable-multilib
-make
+make -j6
 make install
 
 export LIB_PATH=${OPT_DIR}/${VERSION}/lib64
 
+pushd ${SCRIPT_DIR}
 ./create_prgenv.sh ${VERSION}
+popd # out from SCRIPT_DIR
 
 BIN_PATH=${OPT_DIR}/${VERSION}/bin
 DESC="GCC compiler"
