@@ -10,7 +10,7 @@ init_vars
 checkout_git
 
 pushd "${GIT_PATH}"
-module load anaconda2
+module load pypy 
 export PYTHONPATH="${INSTALL_DIR}/lib/python2.7/site-packages/:${PYTHONPATH}"
 mkdir -p "${INSTALL_DIR}/lib/python2.7/site-packages"
 python setup.py install --prefix="${INSTALL_DIR}"
@@ -21,7 +21,7 @@ HELP="A tool for unsupervised learning of subword units"
 BIN_PATH="${INSTALL_DIR}/bin"
 
 read -d '' EXTRA_LINES << EOF
-module add      anaconda2
+module load pypy
 append-path     PYTHONPATH ${INSTALL_DIR}/lib/python2.7/site-packages
 EOF
 
