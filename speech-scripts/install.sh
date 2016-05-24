@@ -15,10 +15,16 @@ BIN_PATH="${GIT_PATH}/am-scripts"
 DESC="Aalto Speech Group internal scripts"
 HELP="Adds scripts from our private repository to PATH"
 
-EXTRA_LINES="prepend-path     PATH ${GIT_PATH}/cluster-scripts
+read -d '' EXTRA_LINES << EOF
+module add       anaconda3
+
+prepend-path     PATH ${GIT_PATH}/cluster-scripts
 prepend-path     PATH ${GIT_PATH}/dictionary-scripts
 prepend-path     PATH ${GIT_PATH}/lattice-scripts
 prepend-path     PATH ${GIT_PATH}/lm-scripts
-prepend-path     PATH ${GIT_PATH}/transcript-scripts"
+prepend-path     PATH ${GIT_PATH}/transcript-scripts
+EOF
 
 write_module
+
+rm -rf "${BUILD_DIR}"
