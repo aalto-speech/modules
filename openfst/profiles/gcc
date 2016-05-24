@@ -1,0 +1,8 @@
+module purge
+module load GCC/4.9.3-2.25
+
+export TOOLCHAIN="-GCC-4.9.3"
+
+export CXXFLAGS="-flto -O2 -msse -msse2 -msse3 -msse4.1 -msse4.2"
+
+export LDFLAGS="-Wl,-rpath=/share/apps/easybuild/software/GCCcore/4.9.3/lib64"

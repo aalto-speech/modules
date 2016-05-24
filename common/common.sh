@@ -51,7 +51,7 @@ checkout_git () {
 
 write_module () {
 
-cat > ${MODULE_DIR}/${VERSION} <<Endofmessage
+cat > ${MODULE_DIR}/${VERSION}${TOOLCHAIN} <<Endofmessage
 #%Module1.0#####################################################################
 ##
 ##

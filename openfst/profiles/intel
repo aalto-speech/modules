@@ -1,0 +1,11 @@
+module purge
+module load icc/2015.3.187-GNU-4.9.3-2.25 GCC/4.9.3-2.25
+
+export TOOLCHAIN="-intel-2015.3.187"
+
+export CXXFLAGS="-ipo -O2 -xSSE4.2" 
+export AR="xiar" 
+export LD="xild" 
+export LDFLAGS="-Wl,-rpath=/share/apps/easybuild/software/GCCcore/4.9.3/lib64 -Wl,-rpath,/cvmfs/fgi.csc.fi/fgci/centos7/apps/icc/2015.3.187-GNU-4.9.3-2.25/lib/intel64" 
+export CXX=icpc 
+export CC=icpc
