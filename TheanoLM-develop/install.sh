@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -x
-
 source ../common/common.sh
 
 NAME=TheanoLM-develop

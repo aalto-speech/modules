@@ -13,8 +13,8 @@ init_vars () {
     OPT_DIR=${MODULE_ROOT}/opt/${NAME}
     MODULE_DIR=${MODULE_ROOT}/modulefiles/${NAME}
 
-    mkdir -p ${OPT_DIR}
-    mkdir -p ${MODULE_DIR}
+    mkdir -p "${OPT_DIR}"
+    mkdir -p "${MODULE_DIR}"
 
     FILE_DIR=${SCRIPT_DIR}/files
 }
@@ -34,10 +34,10 @@ checkout_git () {
 
     COMMIT=$(git rev-parse --short HEAD)
 
-    BUILD_DIR=${OPT_DIR}/${NAME}-${COMMIT}-build
-    INSTALL_DIR=${OPT_DIR}/${NAME}-${COMMIT}
+    export BUILD_DIR=${OPT_DIR}/${NAME}-${COMMIT}${TOOLCHAIN}-build
+    INSTALL_DIR=${OPT_DIR}/${NAME}-${COMMIT}${TOOLCHAIN}
 
-    mkdir ${BUILD_DIR}
+    mkdir -p "${BUILD_DIR}"
 
     git archive ${COMMIT} ${GIT_DIR:-.} | tar -x -C ${BUILD_DIR}
 
@@ -65,11 +65,11 @@ ${EXTRA_LINES}
 Endofmessage
 
 if [ ! -z "${BIN_PATH}" ]; then
-echo "prepend-path     PATH ${BIN_PATH}" >> ${MODULE_DIR}/${VERSION}
+echo "prepend-path     PATH ${BIN_PATH}" >> ${MODULE_DIR}/${VERSION}${TOOLCHAIN}
 fi
 
 if [ ! -z "${LIB_PATH}" ]; then
-echo "prepend-path     LD_LIBRARY_PATH ${LIB_PATH}" >> ${MODULE_DIR}/${VERSION}
+echo "prepend-path     LD_LIBRARY_PATH ${LIB_PATH}" >> ${MODULE_DIR}/${VERSION}${TOOLCHAIN}
 fi
 
 }
