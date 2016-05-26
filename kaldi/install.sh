@@ -51,4 +51,4 @@ HELP="Kaldi ${VERSION} ${TOOLCHAIN}"
 write_module
 
 
-
+rm -Rf ${BUILD_DIR}
