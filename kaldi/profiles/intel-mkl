@@ -1,0 +1,18 @@
+module load icc/2015.3.187-GNU-4.9.3-2.25 openfst/1.4.1-intel-2015.3.187 CUDA/7.5.18
+
+export TOOLCHAIN="-intel-2015.3.187-mkl"
+
+export MAKELINES='
+MKLROOT = $(EBROOTICC)/mkl
+MKLLIB = $(EBROOTICC)/mkl/lib/intel64
+CXXFLAGS_MATH = -DHAVE_MKL -I$(MKLROOT)/include
+MKLFLAGS = -L$(MKLLIB) -Wl,-rpath=$(MKLLIB) -lmkl_intel_lp64  -lmkl_core  -lmkl_sequential
+MATHLIBS = $(MKLFLAGS)
+
+CC = icpc
+CXX = icpc
+AR = xiar
+LD= xild
+
+COMPILER_CXXFLAGS = -xSSE4.2 #-O2 -ipo -xSSE4.2
+'

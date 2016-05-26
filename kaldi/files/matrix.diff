@@ -1,0 +1,36 @@
+diff --git a/src/Makefile b/src/Makefile
+index c10bb51..2231d2b 100644
+--- a/src/Makefile
++++ b/src/Makefile
+@@ -107,6 +107,8 @@ clean: rmlibdir
+ 
+ test: $(addsuffix /test, $(SUBDIRS))
+ 
++test_compile: $(addsuffix /test_compile, $(SUBDIRS))
++
+ ext_test: $(addsuffix /test, $(EXT_SUBDIRS))
+ 
+ # Define an implicit rule, expands to e.g.:
+@@ -115,6 +117,9 @@ ext_test: $(addsuffix /test, $(EXT_SUBDIRS))
+ %/test: % mklibdir
+ 	$(MAKE) -C $< test
+ 
++%/test_compile: % mklibdir
++	$(MAKE) -C $< test_compile
++
+ cudavalgrind:
+ 	-for x in $(CUDAMEMTESTDIR); do $(MAKE) -C $$x valgrind || { echo "valgrind on $$x failed"; exit 1; }; done
+ 
+diff --git a/src/matrix/Makefile b/src/matrix/Makefile
+index 6cc9645..e0b892c 100644
+--- a/src/matrix/Makefile
++++ b/src/matrix/Makefile
+@@ -10,7 +10,7 @@ include ../kaldi.mk
+ 
+ # you can uncomment matrix-lib-speed-test if you want to do the speed tests.
+ 
+-TESTFILES = matrix-lib-test kaldi-gpsr-test sparse-matrix-test #matrix-lib-speed-test
++TESTFILES = matrix-lib-test kaldi-gpsr-test sparse-matrix-test matrix-lib-speed-test
+ 
+ OBJFILES = kaldi-matrix.o kaldi-vector.o packed-matrix.o sp-matrix.o tp-matrix.o \
+            matrix-functions.o qr.o srfft.o kaldi-gpsr.o compressed-matrix.o \

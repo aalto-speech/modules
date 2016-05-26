@@ -1,62 +1,52 @@
 #!/bin/bash
 #SBATCH --mem-per-cpu 4G
-#SBATCH -t 10:00:00
+#SBATCH -t 1:00:00
+#SBATCH -p debug,coin,batch
+#SBATCH -N1
+#SBATCH -c 20
 
 source ../common/common.sh
 
+PROFILE=${1:-gcc-openblas}
+
+module purge
+source profiles/${PROFILE}
+module list
 NAME=kaldi
 GIT_REPO=https://github.com/kaldi-asr/kaldi.git
 GIT_DIR=src
 
 init_vars
 
-module load gcc
-
-. ${FILE_DIR}/modules
-
 checkout_git
 
 pushd ${BUILD_DIR}/src
 
-echo "KALDI_COMMIT = ${COMMIT}" > kaldi.mk
-echo "FSTROOT = ${FST_ROOT}" >> kaldi.mk
-echo "KALDIROOT = ${OPT_DIR}" >> kaldi.mk
+echo "BUILD_DIR = ${BUILD_DIR}" > kaldi.mk
+echo "${MAKELINES}" >> kaldi.mk
+cat ${FILE_DIR}/common.mk >> kaldi.mk
+patch -p2 < ${FILE_DIR}/matrix.diff
+echo "${PWD}"
+make clean
 
-cat ${FILE_DIR}/base.mk >> kaldi.mk
+make -j 20 all 
+make -j 20 test_compile
 
-if [ "${TRITON}" = "triton" ]; then
-    echo "OPENBLASLIBS = -L/usr/lib64 -lopenblas -lgfortran" >> kaldi.mk
-    echo "OPENBLASROOT = /usr" >> kaldi.mk
-    echo "EXTRA_CXXFLAGS += -I/usr/include/openblas" >> kaldi.mk
-else
-    echo "OPENBLASLIBS = -L/usr/lib -lopenblas -lgfortran -llapack -Wl,-rpath=/usr/lib" >> kaldi.mk
-    echo "OPENBLASROOT = /usr" >> kaldi.mk
-fi
+rm -Rf "${INSTALL_DIR}"
+mkdir -p ${INSTALL_DIR}/{bin,testbin}
 
 
-cat ${FILE_DIR}/linux_openblas.mk >> kaldi.mk
-
-make
-mkdir -p collectbin
-pushd collectbin
-find .. -type f -executable -print | grep "bin/" | grep -v "\.cc$" | grep -v "so$" | xargs -L 1 ln -s
-popd
-
-for ext in "o" "cc" "png" "mk"; do
-    find . -type f -iname \*.${ext} -exec rm -f {} \;
-done
-
+find . -type f -executable -print | grep "bin/" | grep -v "\.cc$" | grep -v "so$" | grep -v test | xargs cp -t "${INSTALL_DIR}/bin"
+find . -type f -executable -print | grep -v "\.cc$" | grep -v "so$" | grep test | xargs cp -t "${INSTALL_DIR}/testbin"
 
 popd
 
 
-BIN_PATH=${BUILD_DIR}/src/collectbin
-LIB_PATH=${BUILD_DIR}/src/lib
+BIN_PATH=${INSTALL_DIR}/bin
 
+EXTRA_LINES="setenv KALDI_INSTALL_DIR ${INSTALL_DIR}"
 DESC="Kaldi Speech Recognition Toolkit"
-HELP="Kaldi ${VERSION}, non-cuda with systems openblas"
-
-EXTRA_LINES=$(cat ${FILE_DIR}/modules)
+HELP="Kaldi ${VERSION} ${TOOLCHAIN}"
 
 write_module
 

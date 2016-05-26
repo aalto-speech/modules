@@ -40,7 +40,8 @@ LIB_PATH=${OPT_DIR}/${VERSION}${TOOLCHAIN}/lib
 DESC="OpenFST Toolkit"
 HELP="OpenFST ${VERSION}. This installation contains the kaldi patch for the minimization algorithm"
 
-EXTRA_LINES="setenv FST_ROOT ${OPT_DIR}/${VERSION}"
+EXTRA_LINES="setenv FSTROOT ${OPT_DIR}/${VERSION}${TOOLCHAIN}
+setenv FSTVER ${VERSION}"
 
 write_module
 
