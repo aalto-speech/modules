@@ -5,8 +5,9 @@ source ../common/common.sh
 VERSION=${1:-1.2.2}
 NAME=opengrm-ngram
 
+module purge
+module load GCC/4.9.3-2.25
 module load openfst
-module load gcc
 
 init_vars
 
@@ -19,7 +20,7 @@ wget http://www.openfst.org/twiki/pub/GRM/NGramDownload/opengrm-ngram-${VERSION}
 tar -zxf opengrm-ngram-${VERSION}.tar.gz
 pushd opengrm-ngram-${VERSION}
 
-./configure CPPFLAGS="-I${FST_ROOT}/include" LDFLAGS="-L${FST_ROOT}/lib -L${FST_ROOT}/lib/fst" --prefix=${OPT_DIR}/${VERSION}
+./configure CPPFLAGS="-I${FSTROOT}/include" LDFLAGS="-L${FSTROOT}/lib -Wl,-rpath,${FSTROOT}/lib -L${FSTROOT}/lib/fst -Wl,-rpath,${EBROOTGCC}/lib64" --prefix=${OPT_DIR}/${VERSION}
 make
 make install
 
@@ -28,9 +29,6 @@ LIB_PATH=${OPT_DIR}/${VERSION}/lib
 
 DESC="OpenGrm NGram"
 HELP="OpenGrm NGram ${VERSION}"
-
-EXTRA_LINES="module load prgenv
-module load openfst"
 
 write_module
 

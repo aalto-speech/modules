@@ -7,7 +7,7 @@ NAME=srilm
 
 init_vars
 
-module load gcc
+module load GCC/4.9.3-2.25
 
 if [ ! -f downloads/srilm-${VERSION}.tar.gz ]; then
    error_exit "Please download srilm-${VERSION}.tar.gz to the downloads folder"
@@ -20,6 +20,7 @@ pushd ${OPT_DIR}/${VERSION}
 
 sed -i "1iSRILM = ${OPT_DIR}/${VERSION}/" Makefile
 
+cp ${FILE_DIR}/Makefile.machine.i686-m64 common/
 make World || error_exit "Compilation failed"
 make test || error_exit "test failed"
 make cleanest || error_exit "Cleaning failed"
@@ -30,8 +31,7 @@ LIB_PATH=`pwd`/lib
 DESC="SRI Language model Toolkit"
 HELP="SRILM ${VERSION}"
 
-EXTRA_LINES="module load prgenv
-prepend-path MANPATH $(pwd)/man"
+EXTRA_LINES="prepend-path MANPATH $(pwd)/man"
 
 write_module
 

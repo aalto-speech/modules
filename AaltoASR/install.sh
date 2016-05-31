@@ -29,6 +29,7 @@ read -d '' EXTRA_LINES << EOF
 module load prgenv
 append-path     PYTHONPATH ${LIB_PATH}/site-packages
 append-path     PERL5LIB ${GIT_PATH}/aku/scripts
+append-path     PATH ${GIT_PATH}/pyrectool
 setenv          AALTOASR ${INSTALL_DIR}
 EOF
 
