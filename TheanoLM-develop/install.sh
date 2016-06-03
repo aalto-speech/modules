@@ -18,6 +18,7 @@ read -d '' EXTRA_LINES << EOF
 module add      anaconda3
 module add      Theano
 append-path     PYTHONPATH ${GIT_PATH}
+setenv          THEANOLM ${GIT_PATH}
 EOF
 
 write_module
