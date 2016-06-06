@@ -19,4 +19,6 @@ BIN_PATH="${GIT_PATH}"
 DESC="Percy Liang's brown-cluster tool"
 HELP="Implementation of the Brown hierarchical word clustering algorithm."
 
+EXTRA_LINES="module add      GCC"
+
 write_module
