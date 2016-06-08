@@ -8,7 +8,6 @@ GIT_REPO=git@github.com:dav/word2vec.git
 init_vars
 
 module load GCC
-echo loaded
 
 checkout_git
 
