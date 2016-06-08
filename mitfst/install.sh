@@ -10,7 +10,7 @@ init_vars
 build_dir="$(mktemp -d)"
 pushd "${build_dir}"
 
-#wget "http://people.csail.mit.edu/ilh/fst/libfst-${VERSION}.zip" || error_exit "Could not download this version"
+#wget "http://people.csail.mit.edu/ilh/fst/libfst-${VERSION}.zip"
 #unzip "libfst-${VERSION}.zip"
 cp -a /scratch/elec/puhe/Modules/install_scripts/mitfst/libfst-1.4.0 .
 cd "libfst-${VERSION}"
