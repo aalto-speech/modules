@@ -3,12 +3,12 @@
 source ../common/common.sh
 
 NAME=variKN
-GIT_REPO=git@github.com:/vsiivola/variKN
+GIT_REPO=git@github.com:vsiivola/variKN
 
 init_vars
 
 module load GCC
-module load CMake
+module load cmake
 
 checkout_git
 
@@ -18,19 +18,16 @@ HELP="A toolkit for producing n-gram language models with Kneser-Ney growing and
 mkdir -p "${BUILD_DIR}/build"
 pushd "${BUILD_DIR}/build"
 
-cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} ..
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} -DPYTHON2=ON -DCMAKE_CXX_FLAGS="-Wl,-rpath,${EBROOTGCC}/lib64" ..
 make install
-
-# This isn't copied automatically.
-mv "${BUILD_DIR}/build/bin" "${INSTALL_DIR}/"
 
 popd
 
-BIN_PATH="${INSTALL_DIR}/bin"
-LIB_PATH="${INSTALL_DIR}/lib"
-
-EXTRA_LINES="module add      GCC"
+BIN_PATH=${INSTALL_DIR}/bin
+LIB_PATH=${INSTALL_DIR}/lib
+EXTRA_LINES="append-path     PYTHONPATH ${LIB_PATH}/site-packages"
 
 write_module
+
 
 rm -rf "${BUILD_DIR}"
