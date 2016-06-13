@@ -9,7 +9,8 @@ NAME=cmake
 
 init_vars
 
-module load gcc
+module purge
+module load GCC
 
 pushd ${OPT_DIR}
 
@@ -20,7 +21,7 @@ wget https://cmake.org/files/v3.5/cmake-${VERSION}.tar.gz || error_exit "Could n
 tar xf cmake-${VERSION}.tar.gz
 pushd cmake-${VERSION}
 
-./bootstrap --prefix=${OPT_DIR}/${VERSION}
+LDFLAGS="-Wl,-rpath,${EBROOTGCC}/lib64" ./bootstrap --prefix=${OPT_DIR}/${VERSION}
 make
 make install
 
@@ -30,7 +31,6 @@ LIB_PATH=${OPT_DIR}/${VERSION}/lib
 DESC="CMake"
 HELP="CMake ${VERSION}"
 
-EXTRA_LINES="module load prgenv"
 
 write_module
 
