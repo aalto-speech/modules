@@ -7,7 +7,7 @@ NAME=srilm
 
 init_vars
 
-module load GCC/4.9.3-2.25
+module load GCC
 
 if [ ! -f downloads/srilm-${VERSION}.tar.gz ]; then
    error_exit "Please download srilm-${VERSION}.tar.gz to the downloads folder"
@@ -17,6 +17,10 @@ mkdir -p ${OPT_DIR}/${VERSION}
 tar xzvf downloads/srilm-${VERSION}.tar.gz -C ${OPT_DIR}/${VERSION}
 
 pushd ${OPT_DIR}/${VERSION}
+
+if [ -f $FILE_DIR/${VERSION}.patch ]; then
+    patch -p1 < $FILE_DIR/${VERSION}.patch
+fi
 
 sed -i "1iSRILM = ${OPT_DIR}/${VERSION}/" Makefile
 

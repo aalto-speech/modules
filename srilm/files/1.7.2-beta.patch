@@ -1,0 +1,21 @@
+diff -ur srilm-1.7.2-beta/lattice/src/Lattice.cc srilm-1.7.2-beta-patched/lattice/src/Lattice.cc
+--- srilm-1.7.2-beta/lattice/src/Lattice.cc	2015-01-07 03:05:12.000000000 +0200
++++ srilm-1.7.2-beta-patched/lattice/src/Lattice.cc	2016-06-09 15:39:58.000000000 +0300
+@@ -3552,7 +3552,7 @@
+ 		    removeNode(nodeIndex);
+ 		}
+ 	    } else {
+-		if (normalizedPosterior <  minumumPosterior) {
++		if ((normalizedPosterior < minumumPosterior) && (normalizedPosterior > 0.0)) {
+ 		    minumumPosterior = normalizedPosterior;
+ 		}
+ 	    }
+@@ -3585,7 +3585,7 @@
+ 		} else if ((maxDensity > 0.0 && d > maxDensity) ||
+ 			   (maxNodes > 0 && numRealNodes > maxNodes)) 
+ 		{
+-		    threshold *= 1.25893;	// 10^(1/10)
++		    threshold = max(threshold * 1.25893, nextafter(threshold, Prob(1.0)));  // * 10^(1/10) or minimum increment
+ 
+ 		    // avoid disconnecting lattice, keep threshold below 1
+ 		    if (threshold > 1.0) {

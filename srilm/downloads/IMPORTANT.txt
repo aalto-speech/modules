@@ -1,0 +1,3 @@
+The standard distribution contains a bug that causes lattice pruning to continue
+indefinitely with some lattices, because of limited floating point precision.
+The patched version contains a fix in lattice/src/Lattice.cc. // Seppo Enarvi
