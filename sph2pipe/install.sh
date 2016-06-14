@@ -7,7 +7,7 @@ NAME=sph2pipe
 
 init_vars
 
-module load gcc
+module load GCC
 
 pushd ${OPT_DIR}
 
@@ -25,8 +25,6 @@ LIB_PATH=
 
 DESC="sph2pipe"
 HELP="sph2pipe ${VERSION}"
-
-EXTRA_LINES="module load prgenv"
 
 write_module
 
