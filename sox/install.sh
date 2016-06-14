@@ -7,7 +7,7 @@ NAME=sox
 
 init_vars
 
-module load gcc
+module load GCC
 
 pushd ${OPT_DIR}
 
@@ -26,8 +26,6 @@ LIB_PATH=${OPT_DIR}/${VERSION}/lib
 
 DESC="SOX"
 HELP="SOX ${VERSION}"
-
-EXTRA_LINES="module load prgenv"
 
 write_module
 
