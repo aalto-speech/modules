@@ -6,9 +6,11 @@ NAME=TheanoLM
 GIT_REPO=git@github.com:senarvi/theanolm.git
 
 init_vars
-
 checkout_git
 
+VERSION="0.8.0"
+pushd "${GIT_PATH}"
+git checkout "tags/v${VERSION}"
 pushd "${GIT_PATH}"
 module load anaconda3
 module load Theano
@@ -31,4 +33,4 @@ VERSION=$(git --git-dir="${GIT_PATH}/.git" describe --match 'v[0-9]*')
 VERSION=${VERSION:1}
 write_module
 
-rm -Rf "${BUILD_DIR}"
+rm -rf "${BUILD_DIR}"
