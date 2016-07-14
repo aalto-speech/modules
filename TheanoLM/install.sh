@@ -8,7 +8,7 @@ GIT_REPO=git@github.com:senarvi/theanolm.git
 init_vars
 checkout_git
 
-VERSION="0.8.0"
+VERSION="0.9.1"
 pushd "${GIT_PATH}"
 git checkout "tags/v${VERSION}"
 pushd "${GIT_PATH}"
