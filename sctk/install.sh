@@ -21,14 +21,15 @@ pushd ${OPT_DIR}/${VERSION}-build
 
 sed -i "s#^PREFIX.*#PREFIX=${OPT_DIR}/${VERSION}#" src/makefile
 
-make config || error_exit "config failed"
+LDFLAGS="-Wl,-rpath,${EBROOTGCC}/lib64" make config || error_exit "config failed"
 #sed -i "1iPREFIX = ${OPT_DIR}/${VERSION}/" Makefile
-make all || error_exit "compilation failed"
+LDFLAGS="-Wl,-rpath,${EBROOTGCC}/lib64" make all || error_exit "compilation failed"
 
 BIN_PATH=${OPT_DIR}/${VERSION}/bin
 
 mkdir -p $BIN_PATH
 make install || error_exit "install failed"
+cp ${OPT_DIR}/${VERSION}-build/bin/asclite $BIN_PATH
 make doc || error_exit "doc failed"
 
 DESC="SCTK"
