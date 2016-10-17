@@ -1,13 +1,13 @@
 #!/bin/bash
 #SBATCH --mem-per-cpu 4G
 #SBATCH -t 1:00:00
-#SBATCH -p debug,coin,batch
+#SBATCH -p coin,batch-ivb,batch-wsm,batch-hsw,short-ivb,short-wsm,short-hsw
 #SBATCH -N1
 #SBATCH -c 20
 
 source ../common/common.sh
 
-PROFILE=${1:-gcc-openblas}
+PROFILE=${1:-gcc-mkl}
 
 module purge
 source profiles/${PROFILE}

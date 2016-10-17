@@ -14,7 +14,7 @@ valgrind: .valgrind
 
 #KALDI_FLAVOR := dynamic
 #KALDILIBDIR := $(BUILD_DIR)/src/lib
-CONFIGURE_VERSION := 3
+CONFIGURE_VERSION := 4
 #FSTROOT = $FSTROOT)
 OPENFST_VER = $(FSTVER)
 OPENFST_GE_10400 = 1
@@ -58,4 +58,4 @@ CUDA_FLAGS = -g -Xcompiler -fPIC --verbose --machine 64 -DHAVE_CUDA \
              -DKALDI_DOUBLEPRECISION=$(DOUBLE_PRECISION)
 CXXFLAGS += -DHAVE_CUDA -I$(CUDATKDIR)/include
 CUDA_LDFLAGS += -L$(CUDATKDIR)/lib64 -Wl,-rpath,$(CUDATKDIR)/lib64
-CUDA_LDLIBS += -lcublas -lcudart #LDLIBS : The libs are loaded later than static libs in implicit rule
+CUDA_LDLIBS += -lcublas -lcudart -lcurand #LDLIBS : The libs are loaded later than static libs in implicit rule
