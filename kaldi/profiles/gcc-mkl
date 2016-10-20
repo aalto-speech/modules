@@ -11,7 +11,12 @@ MATHLIBS = $(MKLFLAGS)
 
 CC = g++
 CXX = g++
-AR = ar
+AR = gcc-ar
 
 COMPILER_CXXFLAGS = -m64 -Wno-unused-local-typedefs -O2 -msse -msse2 -msse3 -msse4.1 -msse4.2 #-flto -msse -msse2 -msse3 -msse4.1 -msse4.2
+
+CUDATKDIR = $(EBROOTCUDA)
+CUDA_ARCH = -gencode arch=compute_20,code=sm_20 -gencode arch=compute_37,code=sm_37
+
+RANLIB=gcc-ranlib
 '

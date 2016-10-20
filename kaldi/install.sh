@@ -29,8 +29,8 @@ patch -p2 < ${FILE_DIR}/matrix.diff
 echo "${PWD}"
 make clean
 
-make -j 20 all 
-make -j 20 test_compile
+make -j $SLURM_CPUS_PER_TASK all 
+make -j $SLURM_CPUS_PER_TASK test_compile
 
 rm -Rf "${INSTALL_DIR}"
 mkdir -p ${INSTALL_DIR}/{bin,testbin}
@@ -51,4 +51,4 @@ HELP="Kaldi ${VERSION} ${TOOLCHAIN}"
 write_module
 
 
-rm -Rf ${BUILD_DIR}
+#rm -Rf ${BUILD_DIR}

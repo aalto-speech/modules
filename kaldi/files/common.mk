@@ -40,10 +40,10 @@ LDFLAGS = -rdynamic $(OPENFSTLDFLAGS) -Wl,-rpath,/share/apps/easybuild/software/
 LDLIBS = $(COMPILER_LIBS) $(EXTRA_LDLIBS) $(OPENFSTLIBS) $(MATHLIBS) -lm -lpthread -ldl 
 
 CUDA = true
-CUDATKDIR = $(EBROOTCUDA)
-CUDA_ARCH = -gencode arch=compute_20,code=sm_20 -gencode arch=compute_37,code=sm_37
+#CUDATKDIR = $(EBROOTCUDA)
+#CUDA_ARCH = -gencode arch=compute_20,code=sm_20 -gencode arch=compute_37,code=sm_37
 
-RANLIB = ranlib
+#RANLIB = ranlib
 AS = as 
 
 #makefiles/cuda_64bit.mk

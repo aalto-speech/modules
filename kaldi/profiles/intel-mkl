@@ -15,4 +15,8 @@ AR = xiar
 LD= xild
 
 COMPILER_CXXFLAGS = -xSSE4.2 #-O2 -ipo -xSSE4.2
+CUDATKDIR = $(EBROOTCUDA)
+CUDA_ARCH = -gencode arch=compute_20,code=sm_20 -gencode arch=compute_37,code=sm_37
+
+RANLIB=ranlib
 '
