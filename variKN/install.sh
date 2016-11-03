@@ -2,13 +2,17 @@
 
 source ../common/common.sh
 
+PROFILE=${1:-triton}
+
+source profiles/${PROFILE}
+
 NAME=variKN
 GIT_REPO=git@github.com:vsiivola/variKN
 
 init_vars
 
-module load GCC
-module load cmake
+#module load GCC
+#module load cmake
 
 checkout_git
 
@@ -18,7 +22,7 @@ HELP="A toolkit for producing n-gram language models with Kneser-Ney growing and
 mkdir -p "${BUILD_DIR}/build"
 pushd "${BUILD_DIR}/build"
 
-cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} -DPYTHON2=ON -DCMAKE_CXX_FLAGS="-Wl,-rpath,${EBROOTGCC}/lib64" ..
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} -DPYTHON2=ON ..
 make install
 
 popd
