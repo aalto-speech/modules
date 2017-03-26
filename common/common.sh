@@ -9,14 +9,23 @@ error_exit () {
 
 init_vars () {
     SCRIPT_DIR=$(pwd)
-    MODULE_ROOT=${MODULE_ROOT:-${GROUP_DIR}/Modules}
-    OPT_DIR=${MODULE_ROOT}/opt/${NAME}
-    MODULE_DIR=${MODULE_ROOT}/modulefiles/${NAME}
+    MODULE_ROOT="${MODULE_ROOT:-${GROUP_DIR}/Modules}"
+    OPT_DIR="${MODULE_ROOT}/opt/${NAME}"
+    MODULE_DIR="${MODULE_ROOT}/modulefiles/${NAME}"
 
     mkdir -p "${OPT_DIR}"
     mkdir -p "${MODULE_DIR}"
 
-    FILE_DIR=${SCRIPT_DIR}/files
+    FILE_DIR="${SCRIPT_DIR}/files"
+
+    # Python 3 packages can be installed using:
+    #   export PYTHONPATH="${INSTALL_DIR}/${PYTHON3_PACKAGE_SUBDIR}:${PYTHONPATH}"
+    #   mkdir -p "${INSTALL_DIR}/${PYTHON3_PACKAGE_SUBDIR}"
+    #   python3 setup.py install --prefix="${INSTALL_DIR}"
+    # Then add to EXTRA_LINES:
+    #   append-path     PYTHONPATH ${INSTALL_DIR}/${PYTHON3_PACKAGE_SUBDIR}
+    PYTHON3_VERSION=$(python3 -V 2>&1 | sed -r 's/Python ([0-9]+\.[0-9])\..*/\1/')
+    PYTHON3_PACKAGE_SUBDIR="lib/python${PYTHON3_VERSION}/site-packages/"
 }
 
 checkout_git () {

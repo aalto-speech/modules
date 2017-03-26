@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -x
-
 source ../common/common.sh
 
 NAME=Theano
@@ -23,7 +21,6 @@ HELP="Installs Theano library for Python"
 BIN_PATH="${INSTALL_DIR}/bin"
 
 read -d '' EXTRA_LINES << EOF
-module add      goolfc
 module add      anaconda3
 append-path     PYTHONPATH ${INSTALL_DIR}/lib/python3.5/site-packages
 EOF
