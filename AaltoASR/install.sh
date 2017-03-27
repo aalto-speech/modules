@@ -9,7 +9,7 @@ GIT_BRANCH=develop
 init_vars
 
 module load GCC
-module load cmake
+module load CMake
 
 checkout_git
 
