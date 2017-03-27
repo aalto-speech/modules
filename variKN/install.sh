@@ -20,7 +20,7 @@ HELP="A toolkit for producing n-gram language models with Kneser-Ney growing and
 mkdir -p "${BUILD_DIR}/build"
 pushd "${BUILD_DIR}/build"
 
-cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} -DPYTHON2=ON ..
+CXX=g++ CC=gcc cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} -DPYTHON2=ON ..
 make install
 
 popd
