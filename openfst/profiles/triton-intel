@@ -1,0 +1,11 @@
+module purge
+module load icc/2017.1.132-GCC-5.4.0-2.25
+
+export TOOLCHAIN="-intel-2017.1.132"
+
+export CXXFLAGS="-ipo -O2 -xSSE4.2 -fp-model precise -fp-model source -ansi-alias" 
+export AR="xiar" 
+export LD="xild" 
+export LDFLAGS="-Wl,-rpath=$EBROOTGCCCORE/lib64 -Wl,-rpath,$EBROOTICC/lib/intel64" 
+export CXX=icpc 
+export CC=icpc
