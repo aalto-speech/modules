@@ -1,33 +1,25 @@
 #makefiles/common.mk
 # Rules that enable valgrind debugging ("make valgrind")
 
-valgrind: .valgrind
-
-.valgrind:
-	echo -n > valgrind.out
-	for x in $(TESTFILES); do echo $$x>>valgrind.out; valgrind ./$$x >/dev/null 2>> valgrind.out; done
-	! ( grep 'ERROR SUMMARY' valgrind.out | grep -v '0 errors' )
-	! ( grep 'definitely lost' valgrind.out | grep -v -w 0 )
-	rm valgrind.out
-	touch .valgrind
 ##########################################
 
 #KALDI_FLAVOR := dynamic
 #KALDILIBDIR := $(BUILD_DIR)/src/lib
-CONFIGURE_VERSION := 4
+CONFIGURE_VERSION := 6
 #FSTROOT = $FSTROOT)
 OPENFST_VER = $(FSTVER)
 OPENFST_GE_10400 = 1
-EXTRA_CXXFLAGS += -DHAVE_OPENFST_GE_10400 -std=c++0x
-OPENFSTLIBS = -L$(FSTROOT)/lib -lfst
+EXTRA_CXXFLAGS += -DHAVE_OPENFST_GE_10400 -std=c++11
+OPENFSTLIBS = $(FSTROOT)/lib/libfst.so
 OPENFSTLDFLAGS = -Wl,-rpath=$(FSTROOT)/lib
 
 
 DOUBLE_PRECISION = 0
 CXXFLAGS = $(COMPILER_CXXFLAGS) -pthread -Wall -I.. \
       -DKALDI_DOUBLEPRECISION=$(DOUBLE_PRECISION) \
-      -Wno-sign-compare -Winit-self \
-      -DHAVE_EXECINFO_H=1 -rdynamic -DHAVE_CXXABI_H \
+      -Wall -Wno-sign-compare -Wno-unused-local-typedefs \
+      -Wno-deprecated-declarations -Winit-self \
+      -DHAVE_EXECINFO_H=1 -DHAVE_CXXABI_H \
       $(CXXFLAGS_MATH) \
       -I$(FSTROOT)/include \
       $(EXTRA_CXXFLAGS)
@@ -36,7 +28,7 @@ ifeq ($(KALDI_FLAVOR), dynamic)
 CXXFLAGS += -fPIC
 endif
 
-LDFLAGS = -rdynamic $(OPENFSTLDFLAGS) -Wl,-rpath,/share/apps/easybuild/software/GCCcore/4.9.3/lib64
+LDFLAGS = $(OPENFSTLDFLAGS) -Wl,-rpath,$(EBROOTGCCCORE)/lib64 -rdynamic
 LDLIBS = $(COMPILER_LIBS) $(EXTRA_LDLIBS) $(OPENFSTLIBS) $(MATHLIBS) -lm -lpthread -ldl 
 
 CUDA = true

@@ -1,4 +1,4 @@
-module load openfst/1.4.1
+module load openfst/1.6.2
 
 export MAKELINES='
 OPENBLASLIBS = -lopenblas

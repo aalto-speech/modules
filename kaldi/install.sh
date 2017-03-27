@@ -7,7 +7,7 @@
 
 source ../common/common.sh
 
-PROFILE=${1:-gcc-mkl}
+PROFILE=${1:-gcc-mkl2017}
 
 module purge
 source profiles/${PROFILE}

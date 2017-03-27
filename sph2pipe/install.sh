@@ -7,7 +7,7 @@ NAME=sph2pipe
 
 init_vars
 
-module load GCC
+module load GCC/5.4.0-2.25
 
 pushd ${OPT_DIR}
 

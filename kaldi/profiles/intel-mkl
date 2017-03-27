@@ -1,6 +1,6 @@
-module load icc/2015.3.187-GNU-4.9.3-2.25 openfst/1.4.1-intel-2015.3.187 CUDA/7.5.18
+module load icc/2017.1.132-GCC-5.4.0-2.25 openfst/1.4.1-intel-2017.1.132 CUDA/8.0.44
 
-export TOOLCHAIN="-intel-2015.3.187-mkl"
+export TOOLCHAIN="-intel-2017.1.132-mkl"
 
 export MAKELINES='
 MKLROOT = $(EBROOTICC)/mkl
@@ -14,7 +14,7 @@ CXX = icpc
 AR = xiar
 LD= xild
 
-COMPILER_CXXFLAGS = -xSSE4.2 #-O2 -ipo -xSSE4.2
+COMPILER_CXXFLAGS = -xSSE4.2 -O2 -ipo -fp-model precise -fp-model source #-xSSE4.2
 CUDATKDIR = $(EBROOTCUDA)
 CUDA_ARCH = -gencode arch=compute_20,code=sm_20 -gencode arch=compute_37,code=sm_37
 
