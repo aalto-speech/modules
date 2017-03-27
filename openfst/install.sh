@@ -48,4 +48,4 @@ write_module
 
 popd
 popd
-#rm -Rf ${BDIR}
+rm -Rf ${BDIR}
