@@ -24,7 +24,7 @@ index 0eeebc6..6cdff4f 100644
  	-I3rdparty/rnnlm -I$(OPENFST_CXXFLAGS)
  
 -EXTRA := $(CFLAGS) $(THIRD_PARTIES_INCLUDE) $(CXXFLAGS) $(CPPFLAGS)
-+EXTRA := $(CFLAGS) $(THIRD_PARTIES_INCLUDE) $(CXXFLAGS) $(CPPFLAGS) -Wl,-rpath,/share/apps/easybuild/software/GCCcore/4.9.3/lib64 -Wl,-rpath,$(FSTROOT)/lib
++EXTRA := $(CFLAGS) $(THIRD_PARTIES_INCLUDE) $(CXXFLAGS) $(CPPFLAGS) $(LDFLAGS) -Wl,-rpath,$(FSTROOT)/lib
  OBJS  := $(LIBDIR)/util.o \
  	$(LIBDIR)/rnnlmlib.o \
  	$(LIBDIR)/LatticePruner.o \

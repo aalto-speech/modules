@@ -1,0 +1,7 @@
+module purge
+module load GCC/5.4.0-2.25
+module load openfst/1.6.2-GCC-5.4.0
+
+
+
+LDFLAGS="-Wl,-rpath,${EBROOTGCCCORE}/lib64"
