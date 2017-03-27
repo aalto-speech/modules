@@ -2,12 +2,12 @@
 
 source ../common/common.sh
 
-VERSION=${1:-1.7.2-beta}
+VERSION=${1:-1.7.2}
 NAME=srilm
 
 init_vars
 
-module load GCC
+module load GCC/5.4.0-2.25
 
 if [ ! -f downloads/srilm-${VERSION}.tar.gz ]; then
    error_exit "Please download srilm-${VERSION}.tar.gz to the downloads folder"
