@@ -2,12 +2,12 @@
 
 source ../common/common.sh
 
-VERSION=${1:-1.2.2}
+VERSION=${1:-1.3.2}
 NAME=opengrm-ngram
 
-module purge
-module load GCC/4.9.3-2.25
-module load openfst
+PROFILE=${2:-triton}
+
+source profiles/${PROFILE}
 
 init_vars
 
@@ -20,7 +20,7 @@ wget http://www.openfst.org/twiki/pub/GRM/NGramDownload/opengrm-ngram-${VERSION}
 tar -zxf opengrm-ngram-${VERSION}.tar.gz
 pushd opengrm-ngram-${VERSION}
 
-./configure CPPFLAGS="-I${FSTROOT}/include" LDFLAGS="-L${FSTROOT}/lib -Wl,-rpath,${FSTROOT}/lib -L${FSTROOT}/lib/fst -Wl,-rpath,${EBROOTGCC}/lib64" --prefix=${OPT_DIR}/${VERSION}
+./configure CPPFLAGS="-I${FSTROOT}/include" LDFLAGS="-L${FSTROOT}/lib -Wl,-rpath,${FSTROOT}/lib -L${FSTROOT}/lib/fst ${LDFLAGS}" --prefix=${OPT_DIR}/${VERSION}
 make
 make install
 
