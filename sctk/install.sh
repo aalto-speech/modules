@@ -34,6 +34,7 @@ make doc || error_exit "doc failed"
 
 DESC="SCTK"
 HELP="sctk ${VERSION}"
+EXTRA_LINES="prepend-path MANPATH ${OPT_DIR}/${VERSION}/man"
 
 write_module
 
