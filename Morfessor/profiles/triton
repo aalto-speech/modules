@@ -1,0 +1,3 @@
+
+module load pypy2
+EXTRA_MODULES="module load pypy2"
