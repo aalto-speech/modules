@@ -11,7 +11,7 @@ checkout_git
 
 module purge
 module load GCC/4.9.3-2.25
-module load cmake/3.5.2-GCC-4.9.3
+module load CMake/3.4.1-foss-2015b
 module load anaconda3
 #module load Cython
 
