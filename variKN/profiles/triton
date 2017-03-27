@@ -1,6 +1,6 @@
 #!/bin/bash
 
 module load GCC
-module load cmake
+module load CMake
 
 export CPPFLAGS="-Wl,-rpath,${EBROOTGCC}/lib64"

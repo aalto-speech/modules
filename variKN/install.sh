@@ -11,8 +11,6 @@ GIT_REPO=git@github.com:vsiivola/variKN
 
 init_vars
 
-#module load GCC
-#module load cmake
 
 checkout_git
 
