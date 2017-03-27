@@ -10,10 +10,9 @@ init_vars
 checkout_git
 
 module purge
-module load GCC/4.9.3-2.25
-module load CMake/3.4.1-foss-2015b
+module load GCC
+module load CMake
 module load anaconda3
-#module load Cython
 
 mkdir -p "${BUILD_DIR}/build"
 pushd "${BUILD_DIR}/build"
@@ -39,7 +38,7 @@ BIN_PATH="${INSTALL_DIR}/bin"
 LIB_PATH="${INSTALL_DIR}/lib"
 
 read -d '' EXTRA_LINES <<EOF || true
-module add      GCC/4.9.3-2.25
+module add      GCC
 module add      anaconda3
 append-path     PYTHONPATH "${INSTALL_DIR}/${PYTHON3_PACKAGE_SUBDIR}"
 append-path     LD_LIBRARY_PATH "${INSTALL_DIR}/lib64"
