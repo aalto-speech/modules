@@ -10,8 +10,9 @@ init_vars
 checkout_git
 
 module purge
-module load GCC
-module load CMake
+module load GCC || true
+module load CMake || true
+module load Cython || true
 module load anaconda3
 
 mkdir -p "${BUILD_DIR}/build"
