@@ -2,4 +2,4 @@
 
 module load CMake/3.5.2-GCC-5.4.0-2.25 
 
-export CPPFLAGS="-Wl,-rpath,${EBROOTGCC}/lib64"
+export CXXFLAGS="-Wl,-rpath,${EBROOTGCC}/lib64"

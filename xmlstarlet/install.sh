@@ -12,7 +12,7 @@ module purge
 module load GCC
 module list
 
-NAME=openfst
+NAME=xmlstarlet
 
 init_vars
 
@@ -26,7 +26,7 @@ wget https://downloads.sourceforge.net/project/xmlstar/xmlstarlet/${VERSION}/xml
 tar xf xmlstarlet-${VERSION}.tar.gz
 pushd xmlstarlet-${VERSION}
 
-env CPPFLAGS="-Wl,-rpath=$EBROOTGCC/lib64" ./configure --prefix=${OPT_DIR}/${VERSION}
+env CPPFLAGS="-I/usr/include/libxml2 -Wl,-rpath=$EBROOTGCC/lib64" ./configure --prefix=${OPT_DIR}/${VERSION}
 make install
 ln -rs ${OPT_DIR}/${VERSION}/bin/xml ${OPT_DIR}/${VERSION}/bin/xmlstarlet
 

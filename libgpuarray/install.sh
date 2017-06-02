@@ -10,14 +10,12 @@ init_vars
 checkout_git
 
 module purge
-module load GCC || true
-module load CMake || true
-module load Cython || true
+module load CMake/3.5.2-GCC-5.4.0-2.25
 module load anaconda3
 
 mkdir -p "${BUILD_DIR}/build"
 pushd "${BUILD_DIR}/build"
-cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="${INSTALL_DIR}" ..
+CXX=g++ CC=gcc cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="${INSTALL_DIR}" ..
 mkdir -p "${INSTALL_DIR}"
 make
 make install
@@ -30,6 +28,7 @@ export LIBRARY_PATH="${LIBRARY_PATH}:${INSTALL_DIR}/lib"
 export CPATH="${CPATH}:${INSTALL_DIR}/include"
 export PYTHONPATH="${INSTALL_DIR}/${PYTHON3_PACKAGE_SUBDIR}:${PYTHONPATH}"
 
+env | grep PATH
 pushd "${BUILD_DIR}"
 mkdir -p "${INSTALL_DIR}/${PYTHON3_PACKAGE_SUBDIR}"
 python3 setup.py build_ext -L "${INSTALL_DIR}/lib" -I "${INSTALL_DIR}/include"
@@ -39,7 +38,7 @@ BIN_PATH="${INSTALL_DIR}/bin"
 LIB_PATH="${INSTALL_DIR}/lib"
 
 read -d '' EXTRA_LINES <<EOF || true
-module add      GCC
+module add      GCC/5.4.0-2.25
 module add      anaconda3
 append-path     PYTHONPATH "${INSTALL_DIR}/${PYTHON3_PACKAGE_SUBDIR}"
 append-path     LD_LIBRARY_PATH "${INSTALL_DIR}/lib64"

@@ -3,17 +3,18 @@
 source ../common/common.sh
 
 NAME=mitfst
-VERSION='1.4.0'
+VERSION=${1:-1.4.0}
 
 init_vars
 
 build_dir="$(mktemp -d)"
 pushd "${build_dir}"
 
-#wget "http://people.csail.mit.edu/ilh/fst/libfst-${VERSION}.zip"
-#unzip "libfst-${VERSION}.zip"
-cp -a /scratch/elec/puhe/Modules/install_scripts/mitfst/libfst-1.4.0 .
-cd "libfst-${VERSION}"
+wget "http://people.csail.mit.edu/ilh/fst/libfst-${VERSION}.zip"
+unzip "libfst-${VERSION}.zip"
+#cp -a /scratch/elec/puhe/Modules/install_scripts/mitfst/libfst-1.4.0 .
+pushd "libfst-${VERSION}"
+patch -p1 < ${FILE_DIR}/compile.diff
 
 module purge
 # Installation requires Bison. I have been able to build it with
@@ -23,13 +24,15 @@ module load Bison/2.7-GCC-4.8.4
 # 4.7.4 I get less errors, but I still have to use the patched version.
 module load GCC/4.7.4
 
+module list
+
 aclocal
 libtoolize
 autoreconf --install
 automake --add-missing
 
 mkdir -p build
-cd build
+pushd build
 ../configure --prefix="${OPT_DIR}/${VERSION}"
 rm -rf "${OPT_DIR}/${VERSION}"
 make install
@@ -42,5 +45,7 @@ HELP="The MIT FST Toolkit version ${VERSION}. This toolkit is not maintained any
 
 write_module
 
+popd
+popd
 popd
 rm -rf "${build_dir}"

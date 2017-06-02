@@ -7,7 +7,7 @@
 
 source ../common/common.sh
 
-PROFILE=${1:-gcc-mkl2017}
+PROFILE=${1:-triton-gcc-mkl}
 
 module purge
 source profiles/${PROFILE}
@@ -51,4 +51,4 @@ HELP="Kaldi ${VERSION} ${TOOLCHAIN}"
 write_module
 
 
-#rm -Rf ${BUILD_DIR}
+rm -Rf ${BUILD_DIR}
