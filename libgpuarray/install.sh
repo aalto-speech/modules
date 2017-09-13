@@ -12,6 +12,7 @@ checkout_git
 module purge
 module load CMake/3.5.2-GCC-5.4.0-2.25
 module load anaconda3
+module load Cython
 
 mkdir -p "${BUILD_DIR}/build"
 pushd "${BUILD_DIR}/build"
