@@ -38,6 +38,7 @@ checkout_git () {
     GIT_PATH=${OPT_DIR}/${NAME}-git
 
     pushd ${GIT_PATH}
+    git fetch
     git checkout ${GIT_BRANCH:-master}
     git pull
 
