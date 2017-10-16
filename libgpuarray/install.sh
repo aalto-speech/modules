@@ -12,6 +12,7 @@ checkout_git
 module purge
 module load CMake
 module load anaconda3
+module load Cython
 
 pushd "${GIT_PATH}"
 rm -rf ~/.local/lib/libgpuarray* ~/.local/include/gpuarray
