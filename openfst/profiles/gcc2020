@@ -1,0 +1,9 @@
+module purge
+
+module load GCC/7.3.0-2.30
+
+export TOOLCHAIN="-GCC-7.3.0"
+
+export CXXFLAGS="-O2 -msse -msse2 -msse3 -msse4.1 -msse4.2"
+
+export LDFLAGS="-Wl,-rpath=$EBROOTGCC/lib64"

@@ -1,0 +1,22 @@
+module load GCC/5.4.0-2.25 openfst/1.6.2-GCC-5.4.0 CUDA/8.0.44
+
+export TOOLCHAIN="-GCC-5.4.0-mkl"
+
+export MAKELINES='
+MKLROOT = /share/apps/easybuild/software/icc/2017.1.132-GCC-5.4.0-2.25/mkl
+MKLLIB = $(MKLROOT)/lib/intel64
+CXXFLAGS_MATH = -DHAVE_MKL -I$(MKLROOT)/include
+MKLFLAGS = -Wl,--no-as-needed -L$(MKLLIB) -Wl,-rpath=$(MKLLIB) -lmkl_intel_lp64  -lmkl_core  -lmkl_sequential
+MATHLIBS = $(MKLFLAGS)
+
+CC = g++
+CXX = g++
+AR = gcc-ar
+
+COMPILER_CXXFLAGS = -m64 -Wno-unused-local-typedefs -O2 -msse -msse2 -msse3 -msse4.1 -msse4.2 #-flto -msse -msse2 -msse3 -msse4.1 -msse4.2
+
+CUDATKDIR = $(EBROOTCUDA)
+CUDA_ARCH = -gencode arch=compute_20,code=sm_20 -gencode arch=compute_37,code=sm_37
+
+RANLIB=gcc-ranlib
+'

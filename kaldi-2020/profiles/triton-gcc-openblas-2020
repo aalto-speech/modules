@@ -1,0 +1,16 @@
+
+OPENFST=1.6.6-GCC-6.4.0
+OPENFST_VERSION=1.6.6 # This variable needs to be updated if $OPENFST is changed
+CUB=1.8.0
+GCC=6.4.0-2.28
+CUDA=10.2.89
+OPENBLAS=0.2.20-GCC-6.4.0-2.28
+SCTK=2.4.10
+SPH=2.5
+LIBTOOL=2.4.6-GCCcore-6.4.0
+
+export TOOLCHAIN="-GCC-6.4.0-openblas" # This variable needs to be update if mentioned dependencies change
+
+module load GCC/$GCC openfst/$OPENFST CUB/$CUB cuda/$CUDA OpenBLAS/$OPENBLAS sctk/$SCTK sph2pipe/$SPH autoconf automake sox libtool/$LIBTOOL
+
+

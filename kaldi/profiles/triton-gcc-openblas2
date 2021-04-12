@@ -1,0 +1,21 @@
+module load GCC/6.4.0-2.28 openfst/1.6.6-GCC-6.4.0 CUDA/9.0.176 
+
+export TOOLCHAIN="-GCC-6.4.0-openblas"
+
+export MAKELINES='
+OPENBLASROOT = /scratch/work/psmit/openblas/OpenBLAS-0.3.3-root
+OPENBLASLIBS = -L$(OPENBLASROOT)/lib -lopenblas -lgfortran -Wl,-rpath=$(OPENBLASROOT)/lib
+CXXFLAGS_MATH = -DHAVE_OPENBLAS -I$(OPENBLASROOT)/include
+MATHLIBS = $(OPENBLASLIBS)
+
+CC = g++
+CXX = g++
+AR = gcc-ar
+
+COMPILER_CXXFLAGS = -m64 -Wno-unused-local-typedefs -O2 -msse -msse2 -msse3 -msse4.1 -msse4.2 #-flto -msse -msse2 -msse3 -msse4.1 -msse4.2
+
+CUDATKDIR = $(EBROOTCUDA)
+CUDA_ARCH = -gencode arch=compute_30,code=sm_30 -gencode arch=compute_35,code=sm_35 -gencode arch=compute_50,code=sm_50 -gencode arch=compute_53,code=sm_53 -gencode arch=compute_60,code=sm_60 -gencode arch=compute_61,code=sm_61 -gencode arch=compute_62,code=sm_62 -gencode arch=compute_70,code=sm_70
+
+RANLIB=gcc-ranlib
+'
