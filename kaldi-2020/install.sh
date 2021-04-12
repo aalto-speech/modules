@@ -45,7 +45,8 @@ popd
 BIN_PATH=${INSTALL_DIR}/bin
 
 EXTRA_LINES="module load GCC/$GCC openfst/$OPENFST CUB/$CUB cuda/$CUDA OpenBLAS/$OPENBLAS sctk/$SCTK sph2pipe/$SPH sox
-setenv KALDI_INSTALL_DIR ${INSTALL_DIR}"
+setenv KALDI_INSTALL_DIR ${INSTALL_DIR}
+setenv KALDI_GIT_COMMIT ${VERSION}"
 DESC="Kaldi Speech Recognition Toolkit"
 HELP="Kaldi ${VERSION} ${TOOLCHAIN}"
 
