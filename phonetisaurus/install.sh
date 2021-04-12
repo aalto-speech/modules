@@ -20,7 +20,8 @@ mkdir -p ${BIN_PATH} ${LIB_PATH}
 
 pushd ${BUILD_DIR}/src
 patch -p2 < ${FILE_DIR}/makefile.diff
-./configure  --with-openfst-libs=$FSTROOT/lib --with-openfst-includes=$FSTROOT/include --with-install-bin=${BIN_PATH} --with-install-lib=${LIB_PATH} LDFLAGS="${LDFLAGS}"
+echo $LDFLAGS
+CXXFLAGS="${LDFLAGS}" ./configure  --with-openfst-libs=$FSTROOT/lib --with-openfst-includes=$FSTROOT/include --with-install-bin=${BIN_PATH} --with-install-lib=${LIB_PATH} LDFLAGS="${LDFLAGS}"
 
 
 make all phonetisaurus-binding || error_exit "compilation failed"

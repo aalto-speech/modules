@@ -7,7 +7,7 @@
 
 source ../common/common.sh
 
-PROFILE=${1:-triton-gcc-mkl}
+PROFILE=${1:-triton-gcc-openblas}
 
 module purge
 source profiles/${PROFILE}
@@ -25,12 +25,12 @@ pushd ${BUILD_DIR}/src
 echo "BUILD_DIR = ${BUILD_DIR}" > kaldi.mk
 echo "${MAKELINES}" >> kaldi.mk
 cat ${FILE_DIR}/common.mk >> kaldi.mk
-patch -p2 < ${FILE_DIR}/matrix.diff
+#patch -p2 < ${FILE_DIR}/matrix.diff
 echo "${PWD}"
 make clean
 
 make -j $SLURM_CPUS_PER_TASK all 
-make -j $SLURM_CPUS_PER_TASK test_compile
+#make -j $SLURM_CPUS_PER_TASK test_compile
 
 rm -Rf "${INSTALL_DIR}"
 mkdir -p ${INSTALL_DIR}/{bin,testbin}

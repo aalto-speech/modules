@@ -6,8 +6,8 @@
 
 source ../common/common.sh
 
-VERSION=${1:-1.6.2}
-PROFILE=${2:-triton}
+VERSION=${1:-1.6.6}
+PROFILE=${2:-gcc2018}
 
 source profiles/${PROFILE}
 
@@ -23,7 +23,7 @@ BDIR=$(mktemp -d)
 
 pushd ${BDIR}
 
-wget http://openfst.cs.nyu.edu/twiki/pub/FST/FstDownload/openfst-${VERSION}.tar.gz || error_exit "Could not download this version"
+wget http://www.openfst.org/twiki/pub/FST/FstDownload/openfst-${VERSION}.tar.gz || error_exit "Could not download this version"
 #wget https://github.com/kaldi-asr/kaldi/raw/master/tools/extras/openfst-${VERSION}.patch || error_exit "Could not download kaldi patch"
 
 tar xf openfst-${VERSION}.tar.gz

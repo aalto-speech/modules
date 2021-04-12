@@ -1,8 +1,10 @@
 module purge
-module load GCC/5.4.0-2.25
+module load GCC/5.4.0-2.25 python/2.7.15
+#module load GCC/6.2.0-2.27
 
 export TOOLCHAIN="-GCC-5.4.0"
+#export TOOLCHAIN="-GCC-6.2.0"
 
 export CXXFLAGS="-O2 -msse -msse2 -msse3 -msse4.1 -msse4.2"
 
-export LDFLAGS="-Wl,-rpath=$EBROOTGCC/lib64"
+export LDFLAGS="-Wl,-rpath=$EBROOTGCC/lib64,-L/share/apps/spack/software/python/2.7.15/tratr4y/lib"
