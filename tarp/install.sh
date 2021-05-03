@@ -19,6 +19,10 @@ git clone $GIT_REPO $GITDIR
 cd $GITDIR
 VERSION=$(git rev-parse --short HEAD)
 
+# redirect GO cache:
+mkdir -p $GROUP_DIR/Modules/opt/$NAME/go-cache
+export GOCACHE=$GROUP_DIR/Modules/opt/$NAME/go-cache
+
 # Compile
 # NOTE: this is going to error out, but it's just a faulty Makefile, the compilation works
 make bin/tarp
