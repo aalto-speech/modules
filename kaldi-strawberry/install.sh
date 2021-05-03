@@ -10,12 +10,12 @@ module purge
 # Prepare the compilation environment
 GCC=8.4.0
 CUDA=10.2.89
-OPENBLAS=0.3.13-gcc$GCC
-OPENFST=1.6.7-gcc$GCC
+OPENBLAS=0.3.13
+OPENFST=1.6.7
 CUB=1.8.0
 # note the lowercase modules
 module load gcc/$GCC cuda/$CUDA autoconf automake sox libtool
-module load openblas-strawberry/$OPENBLAS openfst-strawberry/$OPENFST
+module load openblas-strawberry/$OPENBLAS-gcc$GCC openfst-strawberry/$OPENFST-gcc$GCC
 module load CUB/$CUB
 module load sctk
 module load sph2pipe
