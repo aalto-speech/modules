@@ -52,8 +52,8 @@ find src/ -type f -executable -print | grep "bin/" | grep -v "so$" | xargs cp -t
 rm -rf $GITDIR
 
 # Write module file
-mkdir -p $GROUP_DIR/Modules/modulesfiles/$NAME/
-MODULEFILE=$GROUP_DIR/Modules/modulesfiles/$NAME/${VERSION}-${TOOLCHAIN}
+mkdir -p $GROUP_DIR/Modules/modulefiles/$NAME/
+MODULEFILE=$GROUP_DIR/Modules/modulefiles/$NAME/${VERSION}-${TOOLCHAIN}
 cat > ${MODULEFILE} << EOF
 #%Module1.0#####################################################################
 ##
