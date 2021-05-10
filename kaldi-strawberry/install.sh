@@ -24,7 +24,7 @@ module list
 # Define module
 NAME=kaldi-strawberry
 GIT_REPO=https://github.com/kaldi-asr/kaldi.git
-TOOLCHAIN="gcc$GCC-cuda$CUDA-openblas$OPENBLAS-openfst$OPENFST" # This variable needs to be update if mentioned dependencies change
+TOOLCHAIN="staticmath-gcc$GCC-cuda$CUDA-openblas$OPENBLAS-openfst$OPENFST" # This variable needs to be update if mentioned dependencies change
 # Get git vars and clone:
 mkdir -p $GROUP_DIR/Modules/opt/$NAME
 GITDIR=$(mktemp -d $GROUP_DIR/Modules/opt/$NAME/XXXXXXXXXX.tmpdir)
@@ -38,7 +38,8 @@ cd src
             --openblas-root=${OPENBLAS_PATH} \
             --fst-root=${OPENFST_PATH} \
             --cub-root=${CUBROOT} \
-            --cudatk-dir=${CUDA_ROOT}
+            --cudatk-dir=${CUDA_ROOT} \
+						--static-math=yes
 make -j12 depend
 make -j12 
 cd ..
@@ -65,8 +66,8 @@ proc ModulesHelp { } {
 module-whatis   "Kaldi Speech Recognition Toolkit, in a strawberry configuration"
 prepend-path PATH ${BINDIR}
 setenv KALDI_COMMIT ${VERSION}
-module load openblas-strawberry/$OPENBLAS
-module load openfst-strawberry/$OPENFST
+module load openblas-strawberry/$OPENBLAS-gcc$GCC 
+module load openfst-strawberry/$OPENFST-gcc$GCC
 module load cuda/$CUDA 
 module load sox
 module load sph2pipe
